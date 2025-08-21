@@ -6,129 +6,287 @@
   <title>Oftalmología MG — Óptica a domicilio</title>
   <meta name="description" content="Oftalmología MG: examen visual, lentes y asesoría óptica a domicilio. Agenda por WhatsApp con Myriam Gutiérrez al +56 9 4073 3292." />
   <meta name="theme-color" content="#10b981" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Ccircle cx='64' cy='64' r='60' fill='%2310b981'/%3E%3Cpath d='M20 64s18-26 44-26 44 26 44 26-18 26-44 26S20 64 20 64zm44 16a16 16 0 1 0 0-32 16 16 0 0 0 0 32z' fill='white'/%3E%3C/svg%3E" />
   <style>
-    /* ... (los estilos permanecen exactamente igual) ... */
+    :root {
+      --primary: #10b981;   /* Verde */
+      --primary-dark: #059669;
+      --secondary: #2563eb; /* Azul */
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --radius: 14px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--secondary); text-decoration: none; }
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--secondary);
+    }
+    .nav nav a {
+      margin-left: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      background: var(--secondary);
+      color: white;
+      transition: background .2s;
+    }
+    .nav nav a:hover {
+      background: #1d4ed8;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 32px 0;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    h1 {
+      font-size: clamp(24px, 5vw, 36px);
+      margin-bottom: 12px;
+      color: var(--secondary);
+    }
+    h2 {
+      font-size: clamp(20px, 4vw, 28px);
+      margin-bottom: 16px;
+      color: var(--secondary);
+    }
+    .lead {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .kpis {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .kpi {
+      flex: 1;
+      min-width: 100px;
+      padding: 12px;
+      border-radius: var(--radius);
+      background: #f3f4f6;
+      text-align: center;
+    }
+    .cta-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn.primary:hover {
+      background: var(--primary-dark);
+    }
+    .btn.secondary {
+      background: var(--secondary);
+      color: white;
+    }
+    form {
+      display: grid;
+      gap: 10px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: var(--radius);
+      font-size: 14px;
+      width: 100%;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    .faq details {
+      margin-bottom: 10px;
+      background: white;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid #e5e7eb;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    footer {
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 20px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .wafloat {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 100;
+    }
+    .wafloat a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: white;
+      font-weight: 600;
+      padding: 12px 16px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    /* Responsividad */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .nav nav {
+        display: none; /* menú se puede hacer hamburguesa más adelante */
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap nav">
-      <div class="logo">
-        <div class="logo-badge">MG</div>
-        <div>
-          Oftalmología MG<br>
-          <small style="color:var(--muted);font-weight:600">Óptica a domicilio</small>
-        </div>
-      </div>
+      <div class="logo">Oftalmología MG</div>
       <nav>
-        <a class="btn" href="#servicios">Servicios</a>
-        <a class="btn" href="#proceso">Cómo funciona</a>
-        <a class="btn" href="#agendar">Agendar</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Cómo funciona</a>
+        <a href="#agendar">Agendar</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <div class="card pad">
-        <span class="badge">Atención en tu hogar</span>
-        <h1>Examen visual y lentes <br>sin salir de casa</h1>
+      <div class="card">
+        <h1>Examen visual y lentes sin salir de casa</h1>
         <p class="lead">
-          Agenda por WhatsApp con <strong>Myriam Gutiérrez</strong> al
+          Agenda por WhatsApp con <strong>Myriam Gutiérrez</strong> al 
           <a href="https://wa.me/56940733292?text=Hola%20Myriam,%20quiero%20agendar%20una%20evaluaci%C3%B3n%20a%20domicilio." target="_blank" rel="noopener">+56 9 4073 3292</a>.
-          Evaluación, receta y entrega de lentes con garantía.
         </p>
         <div class="kpis">
-          <div class="kpi"><strong>24–48h</strong><br><small class="muted">Entrega típica de lentes</small></div>
-          <div class="kpi"><strong>100%</strong><br><small class="muted">Atención a domicilio</small></div>
-          <div class="kpi"><strong>Garantía</strong><br><small class="muted">Ajuste y control</small></div>
+          <div class="kpi"><strong>24–48h</strong><br><small>Entrega típica</small></div>
+          <div class="kpi"><strong>100%</strong><br><small>A domicilio</small></div>
+          <div class="kpi"><strong>Garantía</strong><br><small>Control incluido</small></div>
         </div>
         <div class="cta-row">
-          <a class="btn primary" href="https://wa.me/56940733292?text=Hola%20Myriam,%20quisiera%20agendar%20una%20visita%20a%20domicilio." target="_blank" rel="noopener">💬 Agendar por WhatsApp</a>
-          <a class="btn" href="tel:+56940733292">📞 Llamar</a>
+          <a class="btn primary" href="https://wa.me/56940733292?text=Hola%20Myriam,%20quisiera%20agendar%20una%20visita%20a%20domicilio." target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn secondary" href="tel:+56940733292">📞 Llamar</a>
         </div>
-        <p class="disclaimer">Cobertura sujeta a zona de atención. Pregunta por valores y promociones vigentes.</p>
       </div>
 
-      <div class="card pad">
+      <div class="card">
         <h2 id="agendar">Agenda rápida</h2>
         <form id="waForm">
-          <div>
-            <label>Tu nombre</label>
-            <input id="f_nombre" placeholder="Ej: Camila Soto" required>
-          </div>
-          <div>
-            <label>Comuna o sector</label>
-            <input id="f_comuna" placeholder="Ej: San Miguel">
-          </div>
-          <div>
-            <label>Motivo / necesidad</label>
-            <select id="f_motivo">
-              <option>Evaluación visual</option>
-              <option>Receta actualizada</option>
-              <option>Lentes nuevos</option>
-              <option>Control y ajuste</option>
-            </select>
-          </div>
-          <div>
-            <label>Mensaje adicional</label>
-            <textarea id="f_msg" rows="3" placeholder="Cuéntanos horarios disponibles, si hay pacientes pediátricos, etc."></textarea>
-          </div>
+          <label>Tu nombre</label>
+          <input id="f_nombre" required>
+          <label>Comuna o sector</label>
+          <input id="f_comuna">
+          <label>Motivo</label>
+          <select id="f_motivo">
+            <option>Evaluación visual</option>
+            <option>Receta actualizada</option>
+            <option>Lentes nuevos</option>
+            <option>Control y ajuste</option>
+          </select>
+          <label>Mensaje adicional</label>
+          <textarea id="f_msg" rows="3"></textarea>
           <button type="submit" class="btn primary">Enviar a WhatsApp</button>
         </form>
-        <p class="disclaimer" style="margin-top:8px">
-          Al enviar, se abrirá WhatsApp con tu mensaje prellenado a <strong>+56 9 4073 3292</strong>.
-        </p>
       </div>
     </section>
 
-    <!-- ... (secciones de servicios, proceso y FAQ permanecen igual) ... -->
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <div class="grid">
+        <div class="card"><h3>Evaluación optométrica</h3><p>Medición y receta visual.</p></div>
+        <div class="card"><h3>Lentes ópticos</h3><p>Monofocales, bifocales y progresivos.</p></div>
+        <div class="card"><h3>Atención integral</h3><p>Pediátrica y adultos.</p></div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <h2>Cómo funciona</h2>
+      <div class="grid">
+        <div class="card"><h3>1) Reserva</h3><p>Por WhatsApp coordinamos horario.</p></div>
+        <div class="card"><h3>2) Evaluación</h3><p>Realizamos examen en tu domicilio.</p></div>
+        <div class="card"><h3>3) Entrega</h3><p>Lentes y garantía de ajuste.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Zonas de atención?</summary><p>Santiago y alrededores.</p></details>
+        <details><summary>¿Tiempo de entrega?</summary><p>Entre 24 y 48 horas hábiles.</p></details>
+        <details><summary>¿Garantía?</summary><p>Sí, incluye control y ajuste.</p></details>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-        <div>
-          <strong>Oftalmología MG</strong> — Óptica a domicilio<br>
-          Contacto: <a href="https://wa.me/56940733292" target="_blank" rel="noopener">+56 9 4073 3292</a> · Myriam Gutiérrez
-        </div>
-        <div>© <span id="y"></span> Oftalmología MG. Todos los derechos reservados.</div>
-      </div>
+      © <span id="y"></span> Oftalmología MG · Contacto: <a href="https://wa.me/56940733292" target="_blank">+56 9 4073 3292</a>
     </div>
   </footer>
 
-  <!-- Botón flotante de WhatsApp -->
   <div class="wafloat">
-    <a href="https://wa.me/56940733292?text=Hola%20Myriam,%20me%20gustar%C3%ADa%20agendar%20una%20visita%20a%20domicilio." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-      ☎️ WhatsApp
-    </a>
+    <a href="https://wa.me/56940733292?text=Hola%20Myriam,%20me%20gustar%C3%ADa%20agendar." target="_blank">💬 WhatsApp</a>
   </div>
 
-  <!-- Datos estructurados -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Optician",
-    "name": "Oftalmología MG",
-    "areaServed": "Santiago, Chile",
-    "description": "Óptica a domicilio: examen visual, recetas y lentes con entrega y ajuste.",
-    "telephone": "+56940733292",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "telephone": "+56940733292"
-    },
-    "sameAs": [],
-    "url": "https://example.com"
-  }
-  </script>
-
   <script>
-    // Año en footer
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Formulario -> WhatsApp
     const f = document.getElementById('waForm');
     f.addEventListener('submit', (e)=>{
       e.preventDefault();
@@ -136,12 +294,10 @@
       const comuna = document.getElementById('f_comuna').value.trim();
       const motivo = document.getElementById('f_motivo').value;
       const msgAd = document.getElementById('f_msg').value.trim();
-
-      let texto = `Hola Myriam, soy ${nombre}. Quisiera agendar una visita a domicilio. Motivo: ${motivo}.`;
-      if (comuna) texto += ` Comuna/sector: ${comuna}.`;
-      if (msgAd) texto += ` Detalles: ${msgAd}`;
-      const url = `https://wa.me/56940733292?text=${encodeURIComponent(texto)}`;
-      window.open(url, '_blank', 'noopener');
+      let texto = `Hola Myriam, soy ${nombre}. Motivo: ${motivo}.`;
+      if (comuna) texto += ` Comuna: ${comuna}.`;
+      if (msgAd) texto += ` ${msgAd}`;
+      window.open(`https://wa.me/56940733292?text=${encodeURIComponent(texto)}`,'_blank');
     });
   </script>
 </body>
